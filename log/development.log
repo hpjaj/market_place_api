@@ -202,3 +202,37 @@ Started GET "/" for 127.0.0.1 at 2014-12-23 14:22:01 -0700
 Processing by Rails::WelcomeController#index as HTML
   Rendered /Users/harrylevine/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/railties-4.1.8/lib/rails/templates/rails/welcome/index.html.erb (1.6ms)
 Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."email" = 'example@marketplace.com' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2014-12-23 22:20:29.709518"], ["email", "example@marketplace.com"], ["encrypted_password", "$2a$10$lCLXZCGR/OPci711j5C5o.1t3AmTdcxfWiB3Ne7aMHWWOPLrSZ5/a"], ["updated_at", "2014-12-23 22:20:29.709518"]]
+  [1m[35m (2.9ms)[0m  commit transaction
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-12-23 15:23:30 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::UsersController#show as JSON
+  Parameters: {"subdomain"=>"api", "id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 17ms (Views: 1.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-12-23 15:24:42 -0700
+Processing by Api::V1::UsersController#show as JSON
+  Parameters: {"subdomain"=>"api", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.1ms)
+
+
+Started HEAD "/users/1" for 127.0.0.1 at 2014-12-23 15:25:07 -0700
+Processing by Api::V1::UsersController#show as JSON
+  Parameters: {"subdomain"=>"api", "id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 204 No Content in 4ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2014-12-23 15:26:30 -0700
+Processing by Api::V1::UsersController#show as JSON
+  Parameters: {"subdomain"=>"api", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.1ms)
